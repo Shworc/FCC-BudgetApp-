@@ -44,22 +44,15 @@ class Category:
 
     def transfer(self, amount, other_category):
         if (self.check_funds(amount)):
-            self.withdraw(amount, description=f"Transfer to {self.category}")
+            self.withdraw(amount, f"Transfer to {self.category}")
             other_category.deposit(amount, "Transfer from " + self.category)
             return True
-        return True
-        
-        return True
+        return False
 
     def check_funds(self, amount):
-        total_cash = 0
-        for item in self.ledger:
-            total_cash += item["amount"]
-
-        return total_cash
-        """if(self.get_balance() >= amount):
+        if(self.get_balance() >= amount):
             return True
-        return False"""
+        return False
 
 def create_spend_chart(categories):
     res = "Percentage spent by category\n"
